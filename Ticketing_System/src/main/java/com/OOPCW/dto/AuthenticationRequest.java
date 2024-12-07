@@ -1,10 +1,12 @@
 package com.OOPCW.dto;
 
+
 import lombok.Data;
 
 @Data
-public class SignupRequest {
-    private String name;
+public class AuthenticationRequest {
+
     private String email;
+
     private String password;
 }

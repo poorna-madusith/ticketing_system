@@ -7,6 +7,7 @@ import com.OOPCW.entity.User;
 import com.OOPCW.enums.UserRole;
 import com.OOPCW.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,7 +21,7 @@ public class AuthServiceImpl implements AuthService{
         User user = new User();
         user.setName(signupRequest.getName());
         user.setEmail(signupRequest.getEmail());
-        user.setPassword(signupRequest.getPassword());
+        user.setPassword(new BCryptPasswordEncoder().encode(signupRequest.getPassword()));
         user.setUserrole(UserRole.CUSTOMER);
         User createdUser =  userRepository.save(user);
         UserDto userDto = new UserDto();

@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class UserDto {
-    public void setId(Long id) {
-    }
+    private Long id;
+    private String name;
+    private String email;
 }
