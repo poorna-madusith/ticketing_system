@@ -23,11 +23,11 @@ public class User implements UserDetails {
     private String name;
     private String email;
     private String password;
-    private UserRole userrole;
+    private UserRole userRole;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(userrole.name()));
+        return List.of(new SimpleGrantedAuthority(userRole.name()));
     }
 
     @Override
