@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="!isVendorLoggedIn && !isCustomerLoggedIn">
   <nz-header class="main-header" nz-row nzType="flex" class="custom-navbar">
     <div class="navbar-title">
       <a routerLink = "/login">Ticketing System</a>
@@ -9,4 +9,30 @@
     </div>
   </nz-header>
 </div>
+
+<div *ngIf="isVendorLoggedIn">
+  <nz-header class="main-header" nz-row nzType="flex" class="custom-navbar">
+    <div class="navbar-title">
+      <a routerLink = "/login">Logged In Vendor</a>
+    </div>
+    <div class="nav-links">
+      <a nz-button nzType="link" routerLink="/vendor/dashboard" routerLinkActive="active">Dashboard</a>
+      <a nz-button nzType="link" routerLink="/vendor/ticket" routerLinkActive="active">Add Ticket</a>
+      <a nz-button nzType="link" (click)="logout()" routerLinkActive="active">Logout</a>
+    </div>
+  </nz-header>
+</div>
+
+<div *ngIf="isCustomerLoggedIn">
+  <nz-header class="main-header" nz-row nzType="flex" class="custom-navbar">
+    <div class="navbar-title">
+      <a routerLink = "/login">Logged In Customer</a>
+    </div>
+    <div class="nav-links">
+      <a nz-button nzType="link" routerLink="/customer/dashboard" routerLinkActive="active">Dashboard</a>
+      <a nz-button nzType="link"  (click)="logout()" routerLinkActive="active">Logout</a>
+    </div>
+  </nz-header>
+</div>
+
 <router-outlet></router-outlet>
