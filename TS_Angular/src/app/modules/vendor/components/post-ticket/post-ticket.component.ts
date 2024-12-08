@@ -70,3 +70,4 @@ export class PostTicketComponent implements OnInit {
     }
   }
 }
+ 
