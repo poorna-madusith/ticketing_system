@@ -1,1 +1,57 @@
-<p>update-ticket works!</p>
+<div style="margin-top: 150px">
+    <nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working...">
+        <div class="parent">
+            <div nz-row class="child">
+                <h2 style="margin-left: 290px">Update Ticket</h2>
+              </div>
+              <form nz-form [formGroup]="updateForm">
+                <div nz-col nzSpan="24">
+                    <nz-form-item>
+                      <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This Input Is Required">
+                        <input nz-input placeholder=" Event Name" formControlName="name" />
+                      </nz-form-control>
+                    </nz-form-item>
+                </div>
+
+                <div nz-col nzSpan="24">
+                    <nz-form-item>
+                      <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This Input Is Required">
+                        <nz-date-picker style="width: 100%" nzPlaceholder="Select Event Date" formControlName="date"></nz-date-picker>
+                      </nz-form-control>
+                    </nz-form-item>
+                </div>
+                   
+
+                <div nz-col nzSpan="24">
+                    <nz-form-item>
+                        <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This Input Is Required">
+                            <input nz-input placeholder="Ticket price" formControlName="price" />
+                        </nz-form-control> 
+                    </nz-form-item>
+                </div>
+
+                <div nz-col nzSpan="24">
+                    <nz-form-item>
+                        <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This Input Is Required">
+                            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select number of total tickets" formControlName="totaltickets">
+                                <nz-option *ngFor="let totaltickets of listOfTotaltickets" nzLabel="{{ totaltickets}}" nzValue="{{totaltickets}}"></nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+
+                <div nz-col nzSpan="24">
+                    <nz-form-item>
+                        <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This Input Is Required">
+                            <textarea rows="1" nz-input placeholder="Event description" formControlName="description"></textarea>  
+                        </nz-form-control> 
+                    </nz-form-item>
+                </div>
+
+                <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">
+                    Update
+                </button>
+              </form>
+        </div>
+    </nz-spin>
+</div>
