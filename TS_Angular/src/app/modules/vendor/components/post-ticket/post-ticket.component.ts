@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { VendorService } from '../../services/vendor.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-ticket',
@@ -14,7 +17,12 @@ export class PostTicketComponent implements OnInit {
   listOfOptions: Array<{ label: string; value: string }> = [];
   listOfTotaltickets = ["25", "50", "100", "200", "300", "400", "500"];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private vendorService: VendorService,
+    private message: NzMessageService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.postTicketForm = this.fb.group({
@@ -26,48 +34,50 @@ export class PostTicketComponent implements OnInit {
     });
   }
 
+  handleFileInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+
+      // Preview the image
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result;
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
+  }
+
   postTicket(): void {
     if (this.postTicketForm.invalid) {
-      console.error("Form is invalid. Please fill all required fields.");
+      this.message.error('Please fill all required fields.', { nzDuration: 3000 });
       return;
     }
 
-    console.log(this.postTicketForm.value);
+    this.isSpinning = true;
 
-    const formData: FormData = new FormData();
-
-    if (this.selectedFile) {
-      formData.append('img', this.selectedFile);
-    } else {
-      console.error("No file selected to upload.");
-    }
-
+    const formData = new FormData();
     formData.append('name', this.postTicketForm.get('name')?.value ?? '');
     formData.append('date', this.postTicketForm.get('date')?.value ?? '');
     formData.append('price', this.postTicketForm.get('price')?.value ?? '');
     formData.append('totaltickets', this.postTicketForm.get('totaltickets')?.value ?? '');
     formData.append('description', this.postTicketForm.get('description')?.value ?? '');
 
-    console.log("Form Data Submitted: ", formData);
-    // You can add your API call logic here to send `formData` to the server
-  }
-
-  onFileSelected(event: any): void {
-    this.selectedFile = event.target.files[0] || null;
-    this.previewImage();
-  }
-
-  previewImage(): void {
     if (this.selectedFile) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.imagePreview = reader.result;
-      };
-      reader.readAsDataURL(this.selectedFile);
-    } else {
-      console.error("No file selected for preview.");
-      this.imagePreview = null;
+      formData.append('file', this.selectedFile);
     }
+
+    this.vendorService.postTicket(formData).subscribe(
+      (res) => {
+        this.isSpinning = false;
+        this.message.success('Ticket posted successfully!', { nzDuration: 5000 });
+        this.router.navigateByUrl('/vendor/dashboard');
+      },
+      (error) => {
+        this.isSpinning = false;
+        this.message.error('Error while posting ticket.', { nzDuration: 5000 });
+        console.error('Error:', error);
+      }
+    );
   }
 }
- 

@@ -15,9 +15,7 @@ public class TicketDto {
     private Long id;
     private String name;
     private Date date;
-    private String price;
-    private int totaltickets;
+    private Long price;
+    private String totaltickets;
     private String description;
-    private MultipartFile image;
-    private byte[] returnedImage;
 }

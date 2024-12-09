@@ -1,4 +1,4 @@
-package com.OOPCW.configuration;
+package com.OOPCW.controller;
 
 import com.OOPCW.dto.TicketDto;
 import com.OOPCW.entity.Ticket;
@@ -24,8 +24,8 @@ public class VendorController {
 
     @PostMapping("/ticket")
     public ResponseEntity<?> postTicket(@ModelAttribute TicketDto ticketDto) throws IOException {
-        boolean SUCCSESS = vendorService.postTicket(ticketDto);
-        if(SUCCSESS){
+        boolean succesess = vendorService.postTicket(ticketDto);
+        if(succesess){
             return ResponseEntity.status(HttpStatus.CREATED).build();
         }else{
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();

@@ -17,11 +17,9 @@ public class Ticket {
     private Long id;
     private String name;
     private Date date;
-    private String price;
-    private int totaltickets;
+    private Long price;
+    private String totaltickets;
     private String description;
 
-    @Column(columnDefinition = "longblob")
-    private byte[] image;
 
 }

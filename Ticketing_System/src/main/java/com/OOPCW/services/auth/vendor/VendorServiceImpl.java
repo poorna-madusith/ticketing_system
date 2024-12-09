@@ -25,7 +25,6 @@ public class VendorServiceImpl implements VendorService{
             ticket.setPrice(ticketDto.getPrice());
             ticket.setTotaltickets(ticketDto.getTotaltickets());
             ticket.setDescription(ticketDto.getDescription());
-            ticket.setImage(ticketDto.getImage().getBytes());
             ticketRepository.save(ticket);
             return true;
         }catch (Exception e){
