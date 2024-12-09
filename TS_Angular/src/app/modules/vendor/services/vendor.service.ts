@@ -24,6 +24,19 @@ export class VendorService {
     })
   }
 
+  deleteTicket(id:number):Observable<any>{
+    return this.http.delete(BASE_URL + "/api/vendor/ticket/"+ id,{
+      headers:this.createAuthorizationHeader()
+    });
+  }
+
+  getTicketById(id:number):Observable<any>{
+    return this.http.get(BASE_URL+"/api/vendor/ticket/"+id,{
+      headers:this.createAuthorizationHeader()
+    });
+
+  }
+
   private createAuthorizationHeader(): HttpHeaders {
     const token = StorageService.getToken();
     if (!token) {

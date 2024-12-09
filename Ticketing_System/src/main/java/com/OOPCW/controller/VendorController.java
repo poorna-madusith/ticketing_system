@@ -34,4 +34,16 @@ public class VendorController {
     public ResponseEntity<?> getAllTickets(){
         return ResponseEntity.ok(vendorService.getAllTickets());
     }
+
+    @DeleteMapping("/ticket/{id}")
+    public ResponseEntity<Void> deleteTicket(@PathVariable Long id) {
+        vendorService.deleteTicket(id);
+        return ResponseEntity.ok(null);
+    }
+
+    @GetMapping("/ticket/{id}")
+    public ResponseEntity<TicketDto> getTicketById(@PathVariable Long id) {
+        TicketDto ticketDto = vendorService.getTicketById(id);
+        return ResponseEntity.ok(ticketDto);
+    }
 }

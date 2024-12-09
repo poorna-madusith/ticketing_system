@@ -6,12 +6,14 @@ import { VendorRoutingModule } from './vendor-routing.module';
 import { VendorDashboardComponent } from './components/vendor-dashboard/vendor-dashboard.component';
 import { PostTicketComponent } from './components/post-ticket/post-ticket.component';
 import { NgZorroImportsModule } from '../../NgZorroImportsModule';
+import { UpdateTicketComponent } from './components/update-ticket/update-ticket.component';
 
 
 @NgModule({
   declarations: [
     VendorDashboardComponent,
-    PostTicketComponent
+    PostTicketComponent,
+    UpdateTicketComponent
   ],
   imports: [
     CommonModule,

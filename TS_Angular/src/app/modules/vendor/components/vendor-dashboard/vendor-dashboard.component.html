@@ -14,6 +14,12 @@
             Available Tickets: <b>{{ticket.totaltickets}}</b>
           </h5>
           <hr />
+          <div style="float:left;">
+            <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary" 
+            routerLink="/vendor/ticket/{{ticket.id}}">Update</button>
+            <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary" 
+            (click)="deleteTicket(ticket.id)" nzDanger>Delete</button>
+          </div>
         </div>
       </div>
     </div>

@@ -10,4 +10,8 @@ public interface VendorService {
     boolean postTicket(TicketDto ticketDto) throws IOException;
 
     List<TicketDto> getAllTickets();
+
+    void deleteTicket(Long id);
+
+    TicketDto getTicketById(Long id);
 }
