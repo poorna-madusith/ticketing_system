@@ -1,6 +1,7 @@
 package com.OOPCW.entity;
 
 
+import com.OOPCW.dto.TicketDto;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,8 +19,18 @@ public class Ticket {
     private String name;
     private Date date;
     private Long price;
-    private String totaltickets;
+    private Long totaltickets;
     private String description;
 
+    public TicketDto getTicketDto(){
+        TicketDto ticketDto = new TicketDto();
+        ticketDto.setId(id);
+        ticketDto.setName(name);
+        ticketDto.setDate(date);
+        ticketDto.setPrice(price);
+        ticketDto.setTotaltickets(totaltickets);
+        ticketDto.setDescription(description);
+        return ticketDto;
+    }
 
 }

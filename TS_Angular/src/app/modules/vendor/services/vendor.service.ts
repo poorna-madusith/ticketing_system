@@ -17,6 +17,13 @@ export class VendorService {
     });
   }
 
+
+  getAllTickets():Observable<any>{
+    return this.http.get(BASE_URL+"/api/vendor/tickets",{
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
   private createAuthorizationHeader(): HttpHeaders {
     const token = StorageService.getToken();
     if (!token) {

@@ -16,6 +16,6 @@ public class TicketDto {
     private String name;
     private Date date;
     private Long price;
-    private String totaltickets;
+    private Long totaltickets;
     private String description;
 }

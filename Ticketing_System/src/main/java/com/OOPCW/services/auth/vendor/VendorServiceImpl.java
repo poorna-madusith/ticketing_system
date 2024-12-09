@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -32,5 +34,10 @@ public class VendorServiceImpl implements VendorService{
         }
 
 
+    }
+
+    @Override
+    public List<TicketDto> getAllTickets() {
+        return ticketRepository.findAll().stream().map(Ticket::getTicketDto).collect(Collectors.toList());
     }
 }
