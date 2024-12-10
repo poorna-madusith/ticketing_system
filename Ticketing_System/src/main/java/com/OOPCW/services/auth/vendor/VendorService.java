@@ -14,4 +14,6 @@ public interface VendorService {
     void deleteTicket(Long id);
 
     TicketDto getTicketById(Long id);
+
+    boolean updateTicket(Long ticketId, TicketDto ticketDto);
 }

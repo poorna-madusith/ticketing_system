@@ -52,4 +52,22 @@ public class VendorServiceImpl implements VendorService{
         Optional<Ticket> optionalticket = ticketRepository.findById(id);
         return optionalticket.map(Ticket::getTicketDto).orElse(null);
     }
+
+    @Override
+    public boolean updateTicket(Long ticketId, TicketDto ticketDto) {
+        Optional<Ticket> optionalTicket = ticketRepository.findById(ticketId);
+        if(optionalTicket.isPresent()){
+            Ticket exisistingTicket = optionalTicket.get();
+            exisistingTicket.setPrice(ticketDto.getPrice());
+            exisistingTicket.setTotaltickets(ticketDto.getTotaltickets());
+            exisistingTicket.setDescription(ticketDto.getDescription());
+            exisistingTicket.setDate(ticketDto.getDate());
+            exisistingTicket.setName(ticketDto.getName());
+            ticketRepository.save(exisistingTicket);
+            return true;
+            }else{
+            return false;
+            }
+
+    }
 }

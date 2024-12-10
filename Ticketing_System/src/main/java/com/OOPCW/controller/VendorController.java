@@ -46,4 +46,17 @@ public class VendorController {
         TicketDto ticketDto = vendorService.getTicketById(id);
         return ResponseEntity.ok(ticketDto);
     }
+
+    @PutMapping("/ticket/{ticketId}")
+    public ResponseEntity<Void> updateTicket(@PathVariable Long ticketId, @ModelAttribute TicketDto ticketDto){
+        try{
+            boolean succsess = vendorService.updateTicket(ticketId, ticketDto);
+            if(succsess)return ResponseEntity.status(HttpStatus.OK).build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+
+
+    }
 }

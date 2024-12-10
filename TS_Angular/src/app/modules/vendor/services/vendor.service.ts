@@ -37,6 +37,13 @@ export class VendorService {
 
   }
 
+  updateTicket(ticketId:number,ticketDto:any):Observable<any>{
+    return this.http.put(BASE_URL+"/api/vendor/ticket/"+ ticketId,ticketDto,{
+      headers:this.createAuthorizationHeader()
+    });
+
+  }
+
   private createAuthorizationHeader(): HttpHeaders {
     const token = StorageService.getToken();
     if (!token) {
