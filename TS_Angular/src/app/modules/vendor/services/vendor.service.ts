@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StorageService } from '../../../auth/components/services/storage/storage.service';
 
-const BASE_URL = 'http://localhost:9000'; // Ensure this URL is correct
+const BASE_URL = 'http://localhost:9000'; 
 
 @Injectable({
   providedIn: 'root'
