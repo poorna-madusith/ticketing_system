@@ -13,6 +13,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient } from '@angular/common/http';
 import { NgZorroImportsModule } from './NgZorroImportsModule';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+
 
 
 
@@ -29,7 +32,9 @@ registerLocaleData(en);
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule, // Required for reactive forms (formGroup)
-    NgZorroImportsModule
+    NgZorroImportsModule,
+    NzSelectModule,
+    NzButtonModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

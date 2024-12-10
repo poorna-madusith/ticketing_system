@@ -2,54 +2,35 @@
     padding: 20px;
     width: 780px;
     background-color: white;
-    background: rgb(255, 255, 255);
     box-shadow: 1px 1px 15px -7px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     margin-left: auto;
     margin-right: auto;
+    position: relative; /* Needed for positioning the button inside */
 }
 
-.row {
-    padding: 30px;
-    width: 780px;
-    background-color: white;
-    background: white;
-    border-radius: 5px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-} 
-
-i {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.vertical-center {
-    margin: 0;
+button.buy-button {
     position: absolute;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+    bottom: 10px;
+    right: 10px;
+    background-color: #10e951;
+    color: rgb(5, 5, 5);
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-tr {
+button.buy-button:hover {
+    background-color: #0d6efd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.quantity-select {
+    margin-right: 10px;
     padding: 5px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    margin-bottom: 0px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
 }
-
-p {
-    margin-bottom: 0em;
-}
-
-hr {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-h2:hover {
-    text-decoration-line: underline;
-}
-

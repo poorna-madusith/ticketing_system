@@ -1,6 +1,5 @@
 package com.OOPCW.entity;
 
-
 import com.OOPCW.dto.TicketDto;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -12,7 +11,6 @@ import java.util.Date;
 @Table(name = "tickets")
 public class Ticket {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,7 +20,7 @@ public class Ticket {
     private Long totaltickets;
     private String description;
 
-    public TicketDto getTicketDto(){
+    public TicketDto getTicketDto() {
         TicketDto ticketDto = new TicketDto();
         ticketDto.setId(id);
         ticketDto.setName(name);
@@ -32,5 +30,4 @@ public class Ticket {
         ticketDto.setDescription(description);
         return ticketDto;
     }
-
 }

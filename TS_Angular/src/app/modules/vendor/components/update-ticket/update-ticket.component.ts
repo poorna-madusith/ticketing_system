@@ -43,32 +43,33 @@ export class UpdateTicketComponent {
   getTicketById() {
     this.isSpinning = true;
     this.vendorService.getTicketById(this.ticketId).subscribe((res) => {
-      //console.log(res);
       this.isSpinning = false;
-      const ticketDto = res;  
+      const ticketDto = res;
       console.log(ticketDto);
+      // Format the date if needed before patching
+      if (ticketDto.date) {
+        ticketDto.date = new Date(ticketDto.date).toISOString().split('T')[0]; // Format as YYYY-MM-DD
+      }
       this.updateForm.patchValue(ticketDto);
     });
   }
-
-
-  updateTicket(){
+  
+  updateTicket() {
     if (this.updateForm.invalid) {
       this.message.error('Please fill all required fields.', { nzDuration: 3000 });
       return;
     }
-
+  
     this.isSpinning = true;
-
-    const formData:FormData= new FormData();
+  
+    const formData: FormData = new FormData();
     formData.append('name', this.updateForm.get('name')?.value ?? '');
-    formData.append('date', this.updateForm.get('date')?.value ?? '');
+    formData.append('date', this.updateForm.get('date')?.value ?? ''); // Ensure date format matches backend expectations
     formData.append('price', this.updateForm.get('price')?.value ?? '');
     formData.append('totaltickets', this.updateForm.get('totaltickets')?.value ?? '');
     formData.append('description', this.updateForm.get('description')?.value ?? '');
-
-
-    this.vendorService.updateTicket(this.ticketId,formData).subscribe(
+  
+    this.vendorService.updateTicket(this.ticketId, formData).subscribe(
       (res) => {
         this.isSpinning = false;
         this.message.success('Ticket updated successfully!', { nzDuration: 5000 });
@@ -81,5 +82,6 @@ export class UpdateTicketComponent {
       }
     );
   }
+  
 
 }
