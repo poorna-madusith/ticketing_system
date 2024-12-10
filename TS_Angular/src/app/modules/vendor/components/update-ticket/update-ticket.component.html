@@ -24,7 +24,12 @@
 
                 <div nz-col nzSpan="24">
                     <nz-form-item>
-                        <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This Input Is Required">
+                        <nz-form-control 
+                            nzHasFeedback 
+                            [nzXs]="24" 
+                            [nzErrorTip]="
+                              updateForm.get('price')?.hasError('required') ? 'This Input Is Required' :
+                              updateForm.get('price')?.hasError('pattern') ? 'Price must be a number' : ''">
                             <input nz-input placeholder="Ticket price" formControlName="price" />
                         </nz-form-control> 
                     </nz-form-item>

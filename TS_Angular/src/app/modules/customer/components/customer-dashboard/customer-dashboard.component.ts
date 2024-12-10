@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CustomerService } from '../../service/customer.service';
+import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-customer-dashboard',
@@ -10,7 +11,9 @@ export class CustomerDashboardComponent {
   tickets: any = [];
   quantities: number[] = [1, 2, 3, 4, 5]; // Quantities for dropdown
 
-  constructor(private service: CustomerService) {}
+  constructor(private service: CustomerService,
+    private message:NzMessageService
+  ) {}
 
   ngOnInit() {
     this.getAllTickets();
@@ -28,7 +31,7 @@ export class CustomerDashboardComponent {
 
   buyTickets(ticket: any) {
     if (ticket.selectedQuantity > ticket.totaltickets) {
-      alert('Not enough tickets available!');
+      this.message.error('No tickets available to buy', { nzDuration: 5000 });
       return;
     }
   
@@ -39,7 +42,7 @@ export class CustomerDashboardComponent {
         if (response && response.success) {
           // Update local ticket count and show success message
           ticket.totaltickets -= ticket.selectedQuantity;
-          alert(response.message);
+          this.message.success('Ticket Bought successfully!', { nzDuration: 5000 });
         } else {
           // Handle invalid response structure
           console.error('Unexpected response structure:', response);

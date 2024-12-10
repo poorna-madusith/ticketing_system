@@ -28,7 +28,7 @@ export class PostTicketComponent implements OnInit {
     this.postTicketForm = this.fb.group({
       name: [null, Validators.required],
       date: [null, Validators.required],
-      price: [null, [Validators.required, Validators.min(0)]],
+      price: [null, [Validators.required, Validators.pattern('^[0-9]*$')]],
       totaltickets: [null, Validators.required],
       description: [null, Validators.required]
     });
