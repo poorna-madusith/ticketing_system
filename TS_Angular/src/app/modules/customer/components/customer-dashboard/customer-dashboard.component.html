@@ -9,14 +9,21 @@
         <p>{{ ticket.description }}</p>
         <hr />
         <h5>
-          Price: <b>Rs:{{ ticket.price }}</b> --
-          Date: <b>{{ ticket.date | date: 'dd/MM/yyyy' }}</b> --
+          Price: <b>Rs:{{ ticket.price }}</b> -- 
+          Date: <b>{{ ticket.date | date: 'dd/MM/yyyy' }}</b> -- 
           Available Tickets: <b>{{ ticket.totaltickets }}</b>
         </h5>
         <hr />
       </div>
       <div>
-        <select [(ngModel)]="ticket.selectedQuantity" class="ticket-dropdown">
+        <label for="ticket-quantity-{{ ticket.id }}" style="margin-right: 5px;">
+          No of tickets:
+        </label>
+        <select
+          id="ticket-quantity-{{ ticket.id }}"
+          [(ngModel)]="ticket.selectedQuantity"
+          class="ticket-dropdown"
+        >
           <option *ngFor="let qty of quantities" [value]="qty">{{ qty }}</option>
         </select>
         <button
@@ -25,6 +32,7 @@
           nz-button
           nzType="primary"
           (click)="buyTickets(ticket)"
+          style="margin-left: 10px;"
         >
           Buy
         </button>
